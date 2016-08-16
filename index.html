@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style>
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+body{background: #333333;}
+#pic{width: 400px;height: 710px;position: relative;margin: 0 auto;}
+#pic img{width: 400px;height: 710px;}
+#pic ul{width: 40px;position: absolute;top: 0;right: -50px;}
+#pic li{width: 40px;height: 40px;margin-bottom: 10px;background: #666666;}
+#pic .active{background: #177cd1;}
+#pic span,#pic p{width: 400px;height: 30px;line-height: 30px;text-align: center;color: #FFFFFF;position: absolute;left: 0;background: #177CD1;}
+#pic span{top: 0;}
+#pic p{bottom: 0;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('pic');
+	var oImg=oDiv.getElementsByTagName('img')[0];
+	var oSpan=oDiv.getElementsByTagName('span')[0];
+	var oP=oDiv.getElementsByTagName('p')[0];
+	var oUL=oDiv.getElementsByTagName('ul')[0];
+	var oLI=oUL.getElementsByTagName('li');
+	
+	var arrUrl=['img/IMG_0038.JPG','img/IMG_0039.JPG','img/IMG_0040.JPG','img/IMG_0041.JPG','img/IMG_0046.JPG'];
+	var arrP=['后会无期','滚去奋斗','皎月当空','终于等到你','美丽的校花'];
+	
+	
+	var num=0;
+	var oldLI=null;
+	for (var i=0;i<arrUrl.length;i++) {
+		oUL.innerHTML+="<li></li>";
+	}
+	oldLI=oLI[num];
+	//初始化
+	oImg.src=arrUrl[num];
+	oP.innerHTML=arrP[num]; 
+	oSpan.innerHTML=1+num+'/'+arrUrl.length;
+	oLI[num].className='active';
+	
+	for (var i=0;i<arrUrl.length;i++) {
+		oLI[i].index=i;
+		oLI[i].onclick=function(){
+			oImg.src=arrUrl[this.index];
+			oP.innerHTML=arrP[this.index];
+			oSpan.innerHTML=1+this.index+'/'+arrUrl.length;
+//			for (var i=0;i<arrUrl.length;i++) {
+//				oLI[i].className='';
+//			}
+//			this.className='active';
+			oldLI.className='';
+			oldLI=this;
+			this.className='active';
+		};
+	}
+};
+</script>
+</head>
+<body>
+	<div id="pic">
+		<img src=""/>
+		<span>数量正在加载中...</span>
+		<p>文字说明正在加载中...</p>
+		<ul></ul>
+	</div>
+</body>
+</html>
